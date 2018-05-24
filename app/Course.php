@@ -47,6 +47,10 @@ class Course extends Model
         return "/images/courses/".$this->picture;
     }
 
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
     public function category(){
     	return $this->belongsTo(Category::class)->select('id','name');
     }
@@ -73,5 +77,9 @@ class Course extends Model
 
     public function teacher(){
     	return $this->belongsTo(Teacher::class);
+    }
+
+    public function getRatingAttribute(){
+        return $this->reviews->avg('rating');
     }
 }
