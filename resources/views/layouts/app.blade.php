@@ -13,6 +13,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    @stack('scripts')
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -21,6 +23,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+
+    @stack('styles')
+
 </head>
 <body>
     
@@ -29,6 +34,7 @@
     @yield('jumbotron')
 
     <div id="app">
+        <stripe-form></stripe-form>
         <main class="py-4">
             @if(session('message'))
                 <div class="row justify-content-center">
