@@ -23,11 +23,19 @@ class Student extends Model
 {
 	protected $fillable = ['user_id', 'title'];
 
+	//permite retornar desde get
+	protected $appends = ['courses_formatted'];
+
     public function courses(){
     	return $this->belongsToMany(Course::class);
     }
 
     public function user(){
     	return $this->belongsTo(User::class)->select('id', 'role_id', 'name', 'email');
+    }
+
+    public function getCoursesFormattedAttribute() {
+    	//retorna 'curso 1, curso 2, curso 3, ... curso n'
+    	return $this->courses->pluck('name')->implode(', ');
     }
 }

@@ -10,17 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-
-    @stack('scripts')
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -30,7 +19,6 @@
 
 </head>
 <body>
-    
     @include('partials.navigation')
 
     @yield('jumbotron')
@@ -40,16 +28,23 @@
             @if(session('message'))
                 <div class="row justify-content-center">
                     <div class="col-md-10">
-                        <div class="alert alert-{{session('message')[0]}}">
-                            <h4 class="alert-heading">{{ __("Mensaje informativo")}}</h4>
-                            <p>{{session('message')[1]}}</p>
+                        <div class="alert alert-{{ session('message')[0] }}">
+                            <h4 class="alert-heading">{{ __("Mensaje informativo") }}</h4>
+                            <p>{{ session('message')[1] }}</p>
                         </div>
                     </div>
                 </div>
             @endif
-
             @yield('content')
         </main>
     </div>
+
+    @include('partials.footer')
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    @stack('scripts')
+
 </body>
 </html>
